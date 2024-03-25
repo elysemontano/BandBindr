@@ -1,9 +1,10 @@
 class OrganizationsController < ApplicationController
   before_action :set_organization, only: %i[ show edit update destroy ]
+  before_action :authorize_member, only: %i[ show edit update destroy ]
 
   # GET /organizations or /organizations.json
   def index
-    @organizations = Organization.all
+    @organizations = current_user.organizations
   end
 
   # GET /organizations/1 or /organizations/1.json
@@ -25,6 +26,7 @@ class OrganizationsController < ApplicationController
 
     respond_to do |format|
       if @organization.save
+        @organization.members.create(user: current_user, roles: {admin: true})
         format.html { redirect_to organization_url(@organization), notice: "Organization was successfully created." }
         format.json { render :show, status: :created, location: @organization }
       else
@@ -58,6 +60,9 @@ class OrganizationsController < ApplicationController
   end
 
   private
+  def authorize_member
+    return redirect_to root_path, alert: 'You are not a member' unless @organization.users.include? current_user
+  end
     # Use callbacks to share common setup or constraints between actions.
     def set_organization
       @organization = Organization.find(params[:id])
