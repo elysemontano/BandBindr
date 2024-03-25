@@ -16,6 +16,7 @@
     <% if signed_in? %>
       <div>
         <%= link_to current_user.email, edit_user_registration_path %>
+        <%= link_to 'Organizations', organizations_path %>
         <%= button_to "Log out", destroy_user_session_path, method: :delete %>
       </div>
     <% else %>
