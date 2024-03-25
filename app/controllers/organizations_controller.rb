@@ -60,9 +60,9 @@ class OrganizationsController < ApplicationController
   end
 
   private
-  def authorize_member
-    return redirect_to root_path, alert: 'You are not a member' unless @organization.users.include? current_user
-  end
+    def authorize_member
+      return redirect_to root_path, alert: 'You are not a member' unless @organization.users.include? current_user
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_organization
       @organization = Organization.find(params[:id])

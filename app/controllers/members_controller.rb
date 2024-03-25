@@ -1,5 +1,4 @@
-class MembersController < ApplicationController
-    before_action :set_current_organization
+class MembersController < AuthorizedController
     def index
         @members = @current_organization.members
     end
@@ -11,10 +10,5 @@ class MembersController < ApplicationController
         return redirect_to organization_members_path(@current_organization), alert: 'Email invalid' unless user.valid?
         user.members.find_or_create_by(organization: @current_organization, roles: {admin: false, editor: true})
         redirect_to organization_members_path(@current_organization), notice: "#{email} invited"
-    end
-
-    private
-    def set_current_organization
-        @current_organization = Organization.find(params[:organization_id])
     end
 end
