@@ -8,3 +8,5 @@
 
   <%= button_to "Destroy this organization", @organization, method: :delete %>
 </div>
+
+<%= link_to 'Members', organization_members_path(@organization) %>
