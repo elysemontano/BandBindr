@@ -9,4 +9,5 @@
   <%= button_to "Destroy this organization", @organization, method: :delete %>
 </div>
 
-<%= link_to 'Members', organization_members_path(@organization) %>
+<%= link_to 'Organization Members', organization_members_path(@organization) %>
+<%= link_to 'People', organization_people_path(@organization) %>

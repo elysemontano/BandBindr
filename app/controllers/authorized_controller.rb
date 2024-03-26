@@ -9,6 +9,6 @@ class AuthorizedController < ApplicationController
 
     def authorize_member
         return redirect_to root_path, alert: 'You are not a member' unless @current_organization.users.include? current_user
-      end
+    end
    
 end
