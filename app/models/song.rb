@@ -1,4 +1,5 @@
 class Song < ApplicationRecord
+  validates :organization_id, :song_name, presence: true
   belongs_to :organization
   has_many :people, through: :keys
   has_many :keys
