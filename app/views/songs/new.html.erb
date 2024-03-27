@@ -1,0 +1,9 @@
+<h3>Add a song</h3>
+<%= form_with model: @song, url: organization_songs_path(@current_organization) do |form| %>
+
+  <%= form.label :song_name %>
+  <%= form.text_field :song_name %>
+
+  <br>
+  <%= form.submit 'Add Song' %>
+<% end %>

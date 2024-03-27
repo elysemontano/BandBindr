@@ -1,0 +1,13 @@
+<h3>Edit a song</h3>
+<%= form_with model: [@current_organization, @song], method: :patch, url: organization_song_path(@current_organization, @song) do |form| %>
+
+  <%= form.label :song_name %>
+  <%= form.text_field :song_name %>
+
+  <br>
+  <%= form.submit 'Edit Song' %>
+<% end %>
+
+<%= form_with(model: @song, url: organization_song_path(@current_organization, @song), method: :delete, data: { confirm: 'Are you sure you want to delete this song?' }) do |form| %>
+  <%= form.submit 'Delete', class: 'btn btn-danger' %>
+<% end %>

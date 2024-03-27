@@ -9,7 +9,6 @@
 
 <% @songs.each do |key| %>
     <p>
-        <%= key.song.song_name %>
-        <%= key.song_key %>
+        <%= link_to "#{key.song.song_name} #{key.song_key}", organization_song_path(@current_organization, key.song) %>
     </p>
 <% end %>
