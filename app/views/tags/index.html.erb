@@ -1,0 +1,9 @@
+<h1>Tags</h1>
+
+<% @tags.each do |tag| %>
+  <p>
+    <%= link_to tag.tag_word, organization_tag_path(@current_organization, tag) %>
+  </p>
+<% end %>
+
+<%= link_to 'Add a tag', new_organization_tag_path %>

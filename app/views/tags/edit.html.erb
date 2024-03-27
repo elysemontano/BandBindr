@@ -1,0 +1,13 @@
+<h3>Edit a tag</h3>
+<%= form_with model: [@current_organization, @tag], method: :patch, url: organization_tag_path(@current_organization, @tag) do |form| %>
+
+  <%= form.label :tag_word %>
+  <%= form.text_field :tag_word %>
+
+  <br>
+  <%= form.submit 'Edit Tag' %>
+<% end %>
+
+<%= form_with(model: @tag, url: organization_tag_path(@current_organization, @tag), method: :delete, data: { confirm: 'Are you sure you want to delete this tag?' }) do |form| %>
+  <%= form.submit 'Delete', class: 'btn btn-danger' %>
+<% end %>
