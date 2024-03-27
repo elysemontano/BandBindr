@@ -3,6 +3,9 @@
     <%= @person.last_name %>
 </h1>
 
+<%= link_to 'Edit person', edit_organization_person_path(@current_organization) %>
+<%= link_to 'Back to people', organization_people_path(@current_organization) %>
+
 
 <% @songs.each do |key| %>
     <p>
@@ -10,6 +13,3 @@
         <%= key.song_key %>
     </p>
 <% end %>
-
-
-<%= link_to 'Back to people', organization_people_path(@current_organization) %>
