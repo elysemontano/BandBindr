@@ -1,0 +1,13 @@
+<h1>
+    <%= @tag.tag_word %>
+</h1>
+
+<%= link_to 'Edit tag', edit_organization_tag_path(@current_organization) %>
+<%= link_to 'Back to tags', organization_tags_path(@current_organization) %>
+
+
+<% @songs.each do |song_tag| %>
+    <p>
+        <%= link_to song_tag.song.song_name, organization_song_path(@current_organization, song_tag.song) %>
+    </p>
+<% end %>

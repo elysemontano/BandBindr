@@ -1,0 +1,9 @@
+<h3>Add a tag</h3>
+<%= form_with model: @tag, url: organization_tags_path(@current_organization) do |form| %>
+
+  <%= form.label :tag_word %>
+  <%= form.text_field :tag_word %>
+
+  <br>
+  <%= form.submit 'Add Tag' %>
+<% end %>
