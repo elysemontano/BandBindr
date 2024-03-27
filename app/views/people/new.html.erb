@@ -1,0 +1,13 @@
+<h3>Add a Person</h3>
+<%= form_with model: @person, url: organization_people_path(@current_organization) do |form| %>
+
+  <%= form.label :first_name %>
+  <%= form.text_field :first_name %>
+
+  <br>
+  <%= form.label :last_name %>
+  <%= form.text_field :last_name %>
+
+  <br>
+  <%= form.submit 'Add Person' %>
+<% end %>

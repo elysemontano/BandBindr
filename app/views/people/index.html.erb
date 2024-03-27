@@ -1,0 +1,9 @@
+<h1>People</h1>
+
+<% @people.each do |person| %>
+  <p>
+    <%= link_to "#{person.first_name} #{person.last_name}", organization_person_path(@current_organization, person) %>
+  </p>
+<% end %>
+
+<%= link_to 'Add a person', new_organization_person_path %>

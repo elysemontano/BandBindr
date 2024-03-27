@@ -7,25 +7,24 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_include_tag 'rails-ujs' %>
     <%= javascript_importmap_tags %>
   </head>
 
   <body>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
-    <% if signed_in? %>
-      <div>
+    <div>
+      <% if signed_in? %>
         <%= link_to current_user.email, edit_user_registration_path %>
         <%= link_to 'Organizations', organizations_path %>
         <%= button_to "Log out", destroy_user_session_path, method: :delete %>
-      </div>
-    <% else %>
-      <div>
+      <% else %>
         <%= link_to 'Log in', new_user_session_path %>
         <%= link_to 'Sign up', new_user_registration_path %>
-      </div>
-    <% end %>
-    <%= link_to 'Home', root_path %>
+      <% end %>
+      <%= link_to 'Home', root_path %>
+    </div>
     <%= yield %>
   </body>
 </html>
