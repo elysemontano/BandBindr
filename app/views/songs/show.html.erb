@@ -1,0 +1,13 @@
+<h1>
+    <%= @song.song_name %>
+</h1>
+
+<%= link_to 'Edit song', edit_organization_song_path(@current_organization) %>
+<%= link_to 'Back to songs', organization_songs_path(@current_organization) %>
+
+
+<% @people.each do |key| %>
+    <p>
+        <%= link_to "#{key.person.first_name} #{key.person.last_name} #{key.song_key}", organization_person_path(@current_organization, key.person) %>
+    </p>
+<% end %>
