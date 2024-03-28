@@ -6,6 +6,7 @@ class SongsController < AuthorizedController
     def show
         @song = @current_organization.songs.find(params[:id])
         @people = @song.keys.includes(:person)
+        @tags = @song.song_tags.includes(:tag)
     end
 
     def new

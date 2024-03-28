@@ -1,11 +1,27 @@
-<h1>
-    <%= @song.song_name %>
-</h1>
+<h1><%= @song.song_name %></h1>
 
 <%= link_to 'Edit song', edit_organization_song_path(@current_organization) %>
 <%= link_to 'Back to songs', organization_songs_path(@current_organization) %>
 
+<br/>
 
+<div>
+    <h3>Tags:</h3>
+    <ul>
+        <% @tags.each do |song_tag| %>
+            <li>
+                <%= link_to song_tag.tag.tag_word, organization_tag_path(@current_organization, song_tag.tag) %>
+                <%= button_to 'Delete', organization_song_song_tag_path(@current_organization, @song, song_tag), method: :delete, data: { confirm: 'Are you sure?' } %>
+            </li>
+        <% end %>
+    </ul>
+    <p><%= link_to 'Add a tag', new_organization_song_song_tag_path(@current_organization, @song) %></p>
+</div>
+
+
+<br/>
+
+<h3>People:</h3>
 <% @people.each do |key| %>
     <p>
         <%= link_to "#{key.person.first_name} #{key.person.last_name} #{key.song_key}", organization_person_path(@current_organization, key.person) %>
