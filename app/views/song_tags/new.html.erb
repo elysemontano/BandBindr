@@ -1,0 +1,23 @@
+<h3>Add a tag to <%= @song.song_name %></h3>
+<%= form_with model: @song_tag, url: organization_song_song_tags_path(@current_organization, @song) do |form| %>
+
+  <%= form.hidden_field :song_id, value: @song.id %>
+
+  <div class="field">
+    <%= form.label :tag_id, 'Select or add a tag' %>
+    <%= form.select :tag_id, grouped_options_for_select(grouped_tag_options), { include_blank: 'Select or add a tag' } %>
+  </div>
+
+  <%= form.submit 'Add Tag' %>
+<% end %>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const selectTag = document.querySelector('#song_tag_tag_id');
+  selectTag.addEventListener('change', () => {
+    if (selectTag.value === 'new_tag') {
+      window.location.href = '<%= new_organization_tag_path(@current_organization) %>';
+    }
+  });
+});
+</script>

@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
   resources :organizations do
     resources :people
-    resources :songs
+    resources :songs do 
+      resources :song_tags
+    end
     resources :tags
+    resources :keys
   end
-
-  resources :song_tags
-  resources :keys
 
   # Members are scoped through organizations:
   resources :organizations do
