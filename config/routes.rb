@@ -1,11 +1,14 @@
 Rails.application.routes.draw do
   resources :organizations do
-    resources :people
+    resources :people do 
+      resources :keys, only: [:new]
+    end
     resources :songs do 
       resources :song_tags
+      resources :keys, only: [:new]
     end
     resources :tags
-    resources :keys
+    resources :keys, only: [:index, :show, :create, :update, :destroy]
   end
 
   # Members are scoped through organizations:

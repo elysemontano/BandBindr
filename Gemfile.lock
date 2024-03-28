@@ -192,6 +192,7 @@ GEM
       rspec-mocks (~> 3.13)
       rspec-support (~> 3.13)
     rspec-support (3.13.1)
+    select2-rails (4.0.13)
     sprockets (4.2.1)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
@@ -237,6 +238,7 @@ DEPENDENCIES
   rails (~> 7.0.8)
   redis (~> 4.0)
   rspec-rails (~> 6.1)
+  select2-rails
   sprockets-rails
   stimulus-rails
   turbo-rails
