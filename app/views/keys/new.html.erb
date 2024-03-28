@@ -1,0 +1,66 @@
+<h1>New Key</h1>
+
+<%= form_with model: @key, url: organization_keys_path do |form| %>
+  <% if @song %>
+    <%= form.hidden_field :song_id, value: @song.id %>
+    <div class="field">
+      <%= form.label :person_id, 'Select a person' %>
+      <input type="search" id="person_search" list="people_list" onchange="updatePersonId()">
+      <datalist id="people_list">
+        <% @people.each do |person| %>
+          <option data-id="<%= person.id %>" value="<%= person.first_name %> <%= person.last_name %>">
+        <% end %>
+      </datalist>
+      <%= form.hidden_field :person_id, id: "selected_person_id" %>
+    </div>
+  <% elsif @person %>
+    <%= form.hidden_field :person_id, value: @person.id %>
+    <div class="field">
+      <%= form.label :song_id, 'Select a song' %>
+      <input type="search" id="song_search" list="song_list" onchange="updateSongId()">
+      <datalist id="song_list">
+        <% @songs.each do |song| %>
+          <option data-id="<%= song.id %>" value="<%= song.song_name %>">
+        <% end %>
+      </datalist>
+      <%= form.hidden_field :song_id, id: "selected_song_id" %>
+    </div>
+  <% end %>
+
+  <%= form.label :song_key %>
+  <%= form.text_field :song_key, id: "song_key_input", onchange: "capitalizeFirstLetter(this);" %>
+  <%= form.submit 'Create Key' %>
+<% end %>
+
+<script>
+  function updatePersonId() {
+    const searchInput = document.getElementById('person_search');
+    const selectedPersonIdInput = document.getElementById('selected_person_id');
+    const selectedOption = document.querySelector(`#people_list option[value="${searchInput.value}"]`);
+
+    if (selectedOption) {
+      const selectedPersonId = selectedOption.dataset.id;
+      selectedPersonIdInput.value = selectedPersonId;
+    } else {
+      selectedPersonIdInput.value = '';
+    }
+  }
+
+    function updateSongId() {
+        const searchInput = document.getElementById('song_search');
+        const selectedSongIdInput = document.getElementById('selected_song_id');
+        const selectedOption = document.querySelector(`#song_list option[value="${searchInput.value}"]`);
+
+        if (selectedOption) {
+        const selectedSongId = selectedOption.dataset.id;
+        selectedSongIdInput.value = selectedSongId;
+        } else {
+        selectedSongIdInput.value = '';
+        }
+    }
+
+    function capitalizeFirstLetter(input) {
+        input.value = input.value.charAt(0).toUpperCase() + input.value.slice(1);
+    }
+
+</script>
