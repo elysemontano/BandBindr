@@ -5,28 +5,75 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag 'rails-ujs' %>
     <%= javascript_include_tag 'application', 'data-turbo-track': 'reload' %>
     <%= javascript_importmap_tags %>
-    
   </head>
 
   <body>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
-    <div>
-      <% if signed_in? %>
-        <%= link_to current_user.email, edit_user_registration_path %>
-        <%= link_to 'Organizations', organizations_path %>
-        <%= button_to "Log out", destroy_user_session_path, method: :delete %>
-      <% else %>
-        <%= link_to 'Log in', new_user_session_path %>
-        <%= link_to 'Sign up', new_user_registration_path %>
-      <% end %>
-      <%= link_to 'Home', root_path %>
-    </div>
+    
+    <nav class="navbar bg-[#053D57]">
+      <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
+        <div class="h-16">
+          <div class="h-16 flex items-center justify-between"> <!-- Left side -->
+            <div class="flex-shrink-0 mr-4"> <!-- Add mr-4 for right margin -->
+              <%= link_to "Band Bindr", root_path, class: "text-white font-bold" %>
+            </div>
+            <% if signed_in? %>
+            <div data-controller="dropdown" class="relative">
+              <button type="button" data-action="dropdown#toggle click@window->dropdown#hide">Options</button>
+
+              <div
+                data-dropdown-target="menu"
+                class="hidden transition transform origin-top-right absolute right-0"
+                data-transition-enter-from="opacity-0 scale-95"
+                data-transition-enter-to="opacity-100 scale-100"
+                data-transition-leave-from="opacity-100 scale-100"
+                data-transition-leave-to="opacity-0 scale-95"
+              >
+                <a href="#" data-action="dropdown#toggle">Account settings</a>
+                <a href="#" data-action="dropdown#toggle">Support</a>
+                <a href="#" data-action="dropdown#toggle">License</a>
+              </div>
+            </div>
+              <div class="hidden sm:block sm:ml-6">
+                <div class="flex items-center space-x-4">
+                  <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Songs</a>
+                  <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Members</a>
+                  <!-- Add an ID to the dropdown button -->
+                  <div class="dropdown relative" data-controller="dropdown">
+                    <!-- Add onclick event to the button -->
+                    <button id="account-dropdown" class="text-sm text-gray-300 font-medium focus:outline-none flex items-center" data-dropdown-target="button" data-action="click->dropdown#toggle keydown.esc->dropdown#toggle click@window->dropdown#hide">
+                      Account
+                      <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+                      </svg>
+                    </button>
+                    <div class="dropdown-content absolute z-10 mt-2 w-48 bg-white rounded-md shadow-lg origin-top-right right-0" style="display: none;"> <!-- Add inline style -->
+                      <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu" data-dropdown-target="menu">
+                        <%= link_to current_user.email, edit_user_registration_path, class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900", role: "menuitem" %>
+                        <%= link_to 'Organizations', organizations_path, class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900", role: "menuitem" %>
+                        <%= button_to "Log out", destroy_user_session_path, method: :delete, class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900", role: "menuitem", method: :delete %>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <% else %>
+              <%= link_to 'Log in', new_user_session_path, class: "text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" %>
+              <%= link_to 'Sign up', new_user_registration_path, class: "text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </nav>
+
     <%= yield %>
   </body>
 </html>
+
