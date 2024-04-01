@@ -6,27 +6,41 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag 'rails-ujs' %>
     <%= javascript_include_tag 'application', 'data-turbo-track': 'reload' %>
     <%= javascript_importmap_tags %>
-    
   </head>
 
   <body>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
-    <div>
-      <% if signed_in? %>
-        <%= link_to current_user.email, edit_user_registration_path %>
-        <%= link_to 'Organizations', organizations_path %>
-        <%= button_to "Log out", destroy_user_session_path, method: :delete %>
-      <% else %>
-        <%= link_to 'Log in', new_user_session_path %>
-        <%= link_to 'Sign up', new_user_registration_path %>
-      <% end %>
-      <%= link_to 'Home', root_path %>
-    </div>
+    
+    <nav >
+      <div > <!-- Left side -->
+        <div > 
+          <%= link_to "Band Bindr", root_path %>
+        </div>
+        <% if signed_in? && current_user.last_used_organization_id %>
+          <% organization = Organization.find(current_user.last_used_organization_id) %>
+          <%= organization.name %>
+          <%= link_to 'People', organization_people_path(current_user.last_used_organization_id) %>
+          <%= link_to 'Songs', organization_songs_path(current_user.last_used_organization_id) %>
+          <%= link_to 'Tags', organization_tags_path(current_user.last_used_organization_id) %>
+          <%= link_to 'Account', static_pages_account_page_path %>
+          <%= button_to "Log out", destroy_user_session_path, method: :delete %>
+        <% elsif signed_in? && !current_organization %>
+          <%= link_to 'Organizations', organizations_path %>
+          <%= button_to "Log out", destroy_user_session_path, method: :delete %>
+        <% else %>
+          <%= link_to 'Log in', new_user_session_path %>
+          <%= link_to 'Sign up', new_user_registration_path %>
+        <% end %>
+      </div>
+    </nav>
+
     <%= yield %>
   </body>
 </html>
+

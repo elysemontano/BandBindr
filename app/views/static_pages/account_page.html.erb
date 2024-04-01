@@ -1,0 +1,14 @@
+<h1>
+    My Account:
+</h1>
+<p>Email: <%= current_user.email%></p>
+<p>Last Organization: <%= current_user.last_used_organization_id %></p>
+<p>Organizations:</p>
+<div id="organizations">
+  <% organizations.each do |organization| %>
+    <%= render organization %>
+    <p>
+      <%= link_to "Show this organization", organization %>
+    </p>
+  <% end %>
+</div>

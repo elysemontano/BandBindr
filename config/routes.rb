@@ -22,7 +22,8 @@ Rails.application.routes.draw do
   end
 
   get 'static_pages/landing_page'
-  root 'static_pages#landing_page'
+  get 'static_pages/account_page'
+  root 'application#redirect_to_organization'
 
   devise_for :users
 end
