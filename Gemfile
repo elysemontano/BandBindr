@@ -71,6 +71,6 @@ gem "devise_invitable", "~> 2.0"
 
 gem "rspec-rails", "~> 6.1"
 
-gem 'hotwire-rails'
+# gem 'hotwire-rails'
 
-gem "tailwindcss-rails", "~> 2.3"
+# gem "tailwindcss-rails", "~> 2.3"
