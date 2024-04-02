@@ -33,8 +33,15 @@ class TagsController < AuthorizedController
 
     def destroy
         @tag = @current_organization.tags.find(params[:id])
-        if @tag.destroy
-            redirect_to organization_tags_path(@current_organization)
+        @tag.transaction do 
+            @tag.song_tags.each do |song_tag| 
+                song_tag.destroy
+            end
+            if @tag.destroy
+                redirect_to organization_tags_path(@current_organization), notice: "Tag and associated song tags were successfully deleted."
+            else
+                redirect_to organization_tags_path(@current_organization), alert: "Failed to delete tag."
+            end
         end
     end
 

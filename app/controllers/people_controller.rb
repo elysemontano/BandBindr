@@ -33,10 +33,18 @@ class PeopleController < AuthorizedController
 
     def destroy
         @person = @current_organization.people.find(params[:id])
-        if @person.destroy
-            redirect_to organization_people_path(@current_organization)
+        @person.transaction do
+          @person.keys.each do |key|
+            key.destroy
+          end
+          if @person.destroy
+            redirect_to organization_people_path(@current_organization), notice: "Person and associated songs were successfully deleted."
+          else
+            redirect_to organization_people_path(@current_organization), alert: "Failed to delete person and associated songs."
+          end
         end
     end
+      
 
     private
     def person_params

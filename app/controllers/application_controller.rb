@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-    before_action :authenticate_user!
+    # before_action :authenticate_user!
     before_action :set_current_organization
 
     helper_method :current_organization
