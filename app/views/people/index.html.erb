@@ -1,9 +1,22 @@
-<h1>People</h1>
+<div class="pt-14 pl-10 not-prose flex items-center">
+  <h1 class="text-[#0097B2] text-4xl font-bold">People</h1>
+  <button data-popover-target="popover-animation-add" data-popover-placement="right" type="button" class="text-white  focus:ring-4 focus:outline-none font-medium rounded-lg text-sm mx-5 text-center">
+    <%= link_to(image_tag(image_path("add-icon.svg"), alt: "Add person"), new_organization_person_path, class: "m-5") %>
+  </button>
 
+  <div data-popover id="popover-animation-add" role="tooltip" class="absolute invisible inline-block w-1/10 text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
+      <div class="px-3 py-2">
+          <p>Add a person</p>
+      </div>
+      <div data-popper-arrow></div>
+  </div>
+
+</div>
+
+<ul>
 <% @people.each do |person| %>
-  <p>
-    <%= link_to "#{person.first_name} #{person.last_name}", organization_person_path(@current_organization, person) %>
-  </p>
-<% end %>
-
-<%= link_to 'Add a person', new_organization_person_path %>
+    <li>
+      <%= link_to "#{person.first_name} #{person.last_name}", organization_person_path(@current_organization, person) %>
+    </li>
+  <% end %>
+<ul>

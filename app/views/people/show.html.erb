@@ -1,12 +1,35 @@
-<h1>
-    <%= @person.first_name %>
-    <%= @person.last_name %>
-</h1>
+<div class="pt-14 pl-10 not-prose flex items-center">
+    <h1 class="text-[#0097B2] text-4xl font-bold">
+        <%= @person.first_name %>
+        <%= @person.last_name %>
+    </h1>
 
-<%= link_to 'Edit person', edit_organization_person_path(@current_organization) %>
-<%= link_to 'Add song', new_organization_person_key_path(@current_organization, @person) %>
-<%= link_to 'Back to people', organization_people_path(@current_organization) %>
 
+<%# Edit Person Button %>
+    <button data-popover-target="popover-animation-edit" data-popover-placement="right" type="button" class="text-white  focus:ring-4 focus:outline-none font-medium rounded-lg text-sm mx-5 text-center">
+        <%= link_to(image_tag(image_path("edit-icon.svg"), alt: "Edit person"), edit_organization_person_path(@current_organization), class: "m-5") %>
+    </button>
+
+    <div data-popover id="popover-animation-edit" role="tooltip" class="absolute invisible inline-block w-1/10 text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
+        <div class="px-3 py-2">
+            <p>Edit <%= @person.first_name %></p>
+        </div>
+        <div data-popper-arrow></div>
+    </div>
+
+<%# Add Song Button %>
+    <button data-popover-target="popover-animation-add" data-popover-placement="right" type="button" class="text-white  focus:ring-4 focus:outline-none font-medium rounded-lg text-sm mx-5 text-center">
+        <%= link_to(image_tag(image_path("add-icon.svg"), alt: "Add person"), new_organization_person_key_path(@current_organization, @person), class: "m-5") %>
+    </button>
+
+    <div data-popover id="popover-animation-add" role="tooltip" class="absolute invisible inline-block w-1/10 text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
+        <div class="px-3 py-2">
+            <p>Add Song to <%= @person.first_name %>'s collection</p>
+        </div>
+        <div data-popper-arrow></div>
+    </div>
+
+</div>
 <ul>
     <% @songs.each do |key| %>
         <li>

@@ -90,6 +90,9 @@ GEM
       devise (>= 4.6)
     diff-lcs (1.5.1)
     erubi (1.12.0)
+    ffi (1.16.3)
+    font-awesome-sass (6.5.1)
+      sassc (~> 2.0)
     globalid (1.2.1)
       activesupport (>= 6.1)
     i18n (1.14.4)
@@ -194,6 +197,8 @@ GEM
       rspec-mocks (~> 3.13)
       rspec-support (~> 3.13)
     rspec-support (3.13.1)
+    sassc (2.4.0)
+      ffi (~> 1.9)
     sprockets (4.2.1)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
@@ -235,6 +240,7 @@ DEPENDENCIES
   debug
   devise (~> 4.9)
   devise_invitable (~> 2.0)
+  font-awesome-sass
   importmap-rails
   jbuilder
   pg (~> 1.1)

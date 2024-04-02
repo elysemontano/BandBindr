@@ -1,10 +1,38 @@
 user1 = User.where(email: "test1@example.com").first_or_create(password: "password", password_confirmation: "password")
 user2 = User.where(email: "test2@example.com").first_or_create(password: "password", password_confirmation: "password")
 
-organization1 = user1.organizations.create(name: "Org 1")
-organization2 = user1.organizations.create(name: "Org 2")
-organization3 = user2.organizations.create(name: "Org 3")
-organization4 = user2.organizations.create(name: "Org 4")
+organization1 = user1.organizations.where(name: "Org 1").first_or_create
+organization2 = user1.organizations.where(name: "Org 2").first_or_create
+organization3 = user2.organizations.where(name: "Org 3").first_or_create
+organization4 = user2.organizations.where(name: "Org 4").first_or_create
+
+member1_org1 = Member.find_by(user_id: user1.id, organization_id: organization1.id)
+if member1_org1
+  member1_org1.update(roles: { admin: true })
+else
+  Member.create(user_id: user1.id, organization_id: organization1.id, roles: { admin: true })
+end
+
+member1_org2 = Member.find_by(user_id: user1.id, organization_id: organization2.id)
+if member1_org2
+  member1_org2.update(roles: { admin: true })
+else
+  Member.create(user_id: user1.id, organization_id: organization2.id, roles: { admin: true })
+end
+
+member2_org3 = Member.find_by(user_id: user2.id, organization_id: organization3.id)
+if member2_org3
+  member2_org3.update(roles: { admin: true })
+else
+  Member.create(user_id: user2.id, organization_id: organization3.id, roles: { admin: true })
+end
+
+member2_org4 = Member.find_by(user_id: user2.id, organization_id: organization4.id)
+if member2_org4
+  member2_org4.update(roles: { admin: true })
+else
+  Member.create(user_id: user2.id, organization_id: organization4.id, roles: { admin: true })
+end
 
 people = [
   {
