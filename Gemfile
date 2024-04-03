@@ -71,6 +71,10 @@ gem "devise_invitable", "~> 2.0"
 
 gem "rspec-rails", "~> 6.1"
 
-# gem 'hotwire-rails'
 
-# gem "tailwindcss-rails", "~> 2.3"
+gem "cssbundling-rails", "~> 1.4"
+
+gem "tailwindcss-rails", "~> 2.3"
+
+
+gem "font-awesome-sass"

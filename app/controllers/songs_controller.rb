@@ -34,8 +34,18 @@ class SongsController < AuthorizedController
 
     def destroy
         @song = @current_organization.songs.find(params[:id])
-        if @song.destroy
-            redirect_to organization_songs_path(@current_organization)
+        @song.transaction do 
+            @song.keys.each do |key|
+                key.destroy
+            end
+            @song.song_tags.each do |tag|
+                tag.destroy
+            end
+            if @song.destroy
+                redirect_to organization_songs_path(@current_organization), notice: "Song and associated keys were successfully deleted."
+            else
+                redirect_to organization_songs_path(@current_organization), alert: "Failed to delete song and associated keys."
+            end
         end
     end
 

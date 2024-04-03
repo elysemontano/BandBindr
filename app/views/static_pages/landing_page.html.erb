@@ -1,3 +1,66 @@
-<div class="bg-blue-500 text-white p-4">
-  Welcome to my Rails application with Tailwind CSS!
+<div class="p-10 pt-20 flex justify-center items-center">
+  <%= image_tag ('HomepageImage.png'), class: "h-60"%>
+  <div class="w-6/12 pl-20">
+    <div class="flex align-items items-center">
+      <%= image_tag ('BandBindrLogBlue.png'), class: "h-20"%>
+      <h2 class="text-4xl font-bold text-[#0097B2] pl-4">Band Bindr</h2>
+    </div>
+    <p>
+      Lorem ipsum dolor sit amet consectetur. Ac et egestas facilisi volutpat purus eleifend viverra pellentesque. Massa faucibus amet sed accumsan vehicula lectus ante. Nunc donec eu id neque. Duis placerat pellentesque neque senectus.
+    </p>
+  </div>
+</div>
+
+
+<div class="flex justify-center items-center">
+  <div id="default-carousel" class="relative h-56 md:h-96 w-full flex justify-center" data-carousel="slide">
+      <!-- Carousel wrapper -->
+      <div class="relative overflow-hidden rounded-lg w-2/4">
+          <!-- Item 1 -->
+          <div class="hidden duration-400 ease-in-out text-center self-center" data-carousel-item>
+            <h1 class="text-[#0097B2]">Organizations</h1>
+            <p>Lorem ipsum dolor sit amet consectetur. Ac et egestas facilisi volutpat purus eleifend viverra pellentesque. Massa faucibus amet sed accumsan vehicula lectus ante. Nunc donec eu id neque. Duis placerat pellentesque neque senectus.</p>
+          </div>
+          <!-- Item 2 -->
+          <div class="hidden duration-400 ease-in-out text-center self-center" data-carousel-item>
+            <h1 class="text-[#0097B2]">People</h1>
+            <p>Lorem ipsum dolor sit amet consectetur. Ac et egestas facilisi volutpat purus eleifend viverra pellentesque. Massa faucibus amet sed accumsan vehicula lectus ante. Nunc donec eu id neque. Duis placerat pellentesque neque senectus.</p>
+          </div>
+          <!-- Item 3 -->
+          <div class="hidden duration-400 ease-in-out text-center self-center" data-carousel-item>
+            <h1 class="text-[#0097B2]">Songs</h1>
+            <p>Lorem ipsum dolor sit amet consectetur. Ac et egestas facilisi volutpat purus eleifend viverra pellentesque. Massa faucibus amet sed accumsan vehicula lectus ante. Nunc donec eu id neque. Duis placerat pellentesque neque senectus.</p>
+          </div>
+          <!-- Item 4 -->
+          <div class="hidden duration-400 ease-in-out text-center self-center" data-carousel-item>
+            <h1 class="text-[#0097B2]">Tags</h1>
+            <p>Lorem ipsum dolor sit amet consectetur. Ac et egestas facilisi volutpat purus eleifend viverra pellentesque. Massa faucibus amet sed accumsan vehicula lectus ante. Nunc donec eu id neque. Duis placerat pellentesque neque senectus.</p>
+          </div>
+      </div>
+      <!-- Slider indicators -->
+      <div class="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse">
+          <button type="button" class="w-3 h-3 rounded-full" aria-current="true" aria-label="Slide 1" data-carousel-slide-to="0"></button>
+          <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 2" data-carousel-slide-to="1"></button>
+          <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 3" data-carousel-slide-to="2"></button>
+          <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 4" data-carousel-slide-to="3"></button>
+          <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 5" data-carousel-slide-to="4"></button>
+      </div>
+      <!-- Slider controls -->
+      <button type="button" class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>
+          <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-gray/30 dark:bg-gray-800/30 group-hover:bg-gray/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-gray dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+              <svg class="w-4 h-4 text-gray dark:text-gray-800 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4"/>
+              </svg>
+              <span class="sr-only">Previous</span>
+          </span>
+      </button>
+      <button type="button" class="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-next>
+          <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-gray/30 dark:bg-gray-800/30 group-hover:bg-gray/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-gray dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+              <svg class="w-4 h-4 text-gray dark:text-gray-800 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+              </svg>
+              <span class="sr-only">Next</span>
+          </span>
+      </button>
+  </div>
 </div>
