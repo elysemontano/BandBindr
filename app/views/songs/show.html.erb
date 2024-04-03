@@ -28,7 +28,7 @@
         <% @people.each do |key| %>
             <li>
                 <%= link_to "#{key.person.first_name} #{key.person.last_name} #{key.song_key}", organization_person_path(@current_organization, key.person) %>
-                <%= button_to 'Delete', organization_key_path(@current_organization, key), method: :delete, data: { confirm: 'Are you sure?' } %>
+                <%= button_to 'Delete', organization_song_keys_path(@current_organization, @song, key), method: :delete, data: { confirm: 'Are you sure?' } %>
             </li>
         <% end %>
     </ul>

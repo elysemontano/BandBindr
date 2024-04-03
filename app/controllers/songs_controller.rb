@@ -7,6 +7,7 @@ class SongsController < AuthorizedController
         @song = @current_organization.songs.find(params[:id])
         @people = @song.keys.includes(:person)
         @tags = @song.song_tags.includes(:tag)
+        # session[:last_visited_show_page] = request.original_url
     end
 
     def new

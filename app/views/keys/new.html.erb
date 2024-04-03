@@ -1,36 +1,39 @@
-<h1>New Key</h1>
+<div class="not-prose mt-10 relative overflow-x-auto">
+  <h3 class="text-center text-[#0097B2] text-4xl font-bold mr-4 mb-10">New Key</h3>
 
-<%= form_with model: @key, url: organization_keys_path do |form| %>
-  <% if @song %>
-    <%= form.hidden_field :song_id, value: @song.id %>
-    <div class="field">
-      <%= form.label :person_id, 'Select a person' %>
-      <input type="search" id="person_search" list="people_list" onchange="updatePersonId()">
-      <datalist id="people_list">
-        <% @people.each do |person| %>
-          <option data-id="<%= person.id %>" value="<%= person.first_name %> <%= person.last_name %>">
-        <% end %>
-      </datalist>
-      <%= form.hidden_field :person_id, id: "selected_person_id" %>
-    </div>
-  <% elsif @person %>
-    <%= form.hidden_field :person_id, value: @person.id %>
-    <div class="field">
-      <%= form.label :song_id, 'Select a song' %>
-      <input type="search" id="song_search" list="song_list" onchange="updateSongId()">
-      <datalist id="song_list">
-        <% @songs.each do |song| %>
-          <option data-id="<%= song.id %>" value="<%= song.song_name %>">
-        <% end %>
-      </datalist>
-      <%= form.hidden_field :song_id, id: "selected_song_id" %>
-    </div>
+  <%= form_with model: @key, url: decide_url(@current_organization), class: "max-w-sm mx-auto" do |form| %>
+    <% if @song %>
+      <%= form.hidden_field :song_id, value: @song.id %>
+      <div class="field mb-5">
+        <%= form.label :person_id, 'Select a person', class:"block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+        <input type="search" id="person_search" list="people_list" onchange="updatePersonId()" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+        <datalist id="people_list">
+          <% @people.each do |person| %>
+            <option data-id="<%= person.id %>" value="<%= person.first_name %> <%= person.last_name %>">
+          <% end %>
+        </datalist>
+        <%= form.hidden_field :person_id, id: "selected_person_id" %>
+      </div>
+    <% elsif @person %>
+      <%= form.hidden_field :person_id, value: @person.id %>
+      <div class="field mb-5"">
+        <%= form.label :song_id, 'Select a song', class:"block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+        <input type="search" id="song_search" list="song_list" onchange="updateSongId()" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+        <datalist id="song_list">
+          <% @songs.each do |song| %>
+            <option data-id="<%= song.id %>" value="<%= song.song_name %>">
+          <% end %>
+        </datalist>
+        <%= form.hidden_field :song_id, id: "selected_song_id" %>
+      </div>
+    <% end %>
+
+    <%= form.label :song_key, class:"block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+    <%= form.text_field :song_key, id: "song_key_input", onchange: "capitalizeFirstLetter(this);", class:"shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" %>
+    <%= form.submit 'Create Key', class:"py-2.5 px-5 me-2 mt-8 text-sm font-medium text-white focus:outline-none bg-gray-500 rounded-lg border border-gray-200 hover:bg-gray-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-whitedark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700" %>
   <% end %>
 
-  <%= form.label :song_key %>
-  <%= form.text_field :song_key, id: "song_key_input", onchange: "capitalizeFirstLetter(this);" %>
-  <%= form.submit 'Create Key' %>
-<% end %>
+</div>
 
 <script>
   function updatePersonId() {
