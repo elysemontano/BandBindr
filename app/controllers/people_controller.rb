@@ -1,7 +1,8 @@
 class PeopleController < AuthorizedController
     def index
-        @people = @current_organization.people
-    end
+        @people = @current_organization.people.order(:first_name)
+      end
+      
 
     def show
         @person = @current_organization.people.find(params[:id])

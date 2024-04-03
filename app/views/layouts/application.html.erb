@@ -15,54 +15,14 @@
   </head>
 
   <body>
-    <nav class="bg-[#053D57]">
-      <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
-          <%= image_tag ('BandBindrLogoWhite.png'), class: "h-10"%>
-        </a>
-        <div class="w-full md:block md:w-auto">
-          <ul class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 text-white">
-            <% if signed_in? && current_user.last_used_organization_id %>
-
-            <li>
-              <% organization = Organization.find(current_user.last_used_organization_id) %>
-              <%= link_to organization.name, organization, class: "block py-2 px-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-[#0097B2] md:p-0 dark:text-white md:dark:hover:text-[#0097B2] dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent" %>
-            </li>
-            
-            <li>
-              <%= link_to 'People', organization_people_path(current_user.last_used_organization_id), class: "block py-2 px-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-[#0097B2] md:p-0 dark:text-white md:dark:hover:text-[#0097B2] dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent" %>
-            </li>
-            <li>
-              <%= link_to 'Songs', organization_songs_path(current_user.last_used_organization_id), class: "block py-2 px-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-[#0097B2] md:p-0 dark:text-white md:dark:hover:text-[#0097B2] dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent" %>
-            </li>
-            <li>
-              <%= link_to 'Tags', organization_tags_path(current_user.last_used_organization_id), class: "block py-2 px-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-[#0097B2] md:p-0 dark:text-white md:dark:hover:text-[#0097B2] dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent" %>
-            </li>
-            <li>
-              <%= link_to 'Account', static_pages_account_page_path, class: "block py-2 px-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-[#0097B2] md:p-0 dark:text-white md:dark:hover:text-[#0097B2] dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent" %>
-            </li>
-            <li>
-              <%= button_to "Log out", destroy_user_session_path, method: :delete,  class: "block py-2 px-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-[#0097B2] md:p-0 dark:text-white md:dark:hover:text-[#0097B2] dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent" %>
-            </li>
-
-            <% elsif signed_in? && !current_organization %>
-              <%= link_to 'Organizations', organizations_path %>
-              <%= button_to "Log out", destroy_user_session_path, method: :delete %>
-            <% else %>
-              <%= link_to 'Log in', new_user_session_path %>
-              <%= link_to 'Sign up', new_user_registration_path %>
-            <% end %>
-          </ul>
-        </div>
-      </div>
-    </nav>
+    <%= render partial: 'shared/navbar' %>
 
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <div class="prose">
       <%= yield %>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.turbo.min.js"></script>
   </body>
 </html>
 
