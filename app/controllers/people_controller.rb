@@ -6,7 +6,8 @@ class PeopleController < AuthorizedController
 
     def show
         @person = @current_organization.people.find(params[:id])
-        @songs = @person.keys.includes(:song)
+        @songs = @person.keys.includes(:song).order('songs.song_name')
+        session[:last_visited_show_page] = request.original_url
     end
 
     def new

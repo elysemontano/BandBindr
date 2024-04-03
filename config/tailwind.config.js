@@ -8,6 +8,10 @@ module.exports = {
     './app/views/**/*.{erb,haml,html,slim}'
   ],
   theme: {
+    colors: {
+      azul: '#0097B2',
+      teal: '#0e7490',
+    },
     extend: {
       fontFamily: {
         sans: ['Inter var', ...defaultTheme.fontFamily.sans],
@@ -18,7 +22,7 @@ module.exports = {
             maxWidth: "100%",
           },
         },
-      })
+      }),
     },
   },
   plugins: [
