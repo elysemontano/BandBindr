@@ -6,6 +6,7 @@ class TagsController < AuthorizedController
     def show
         @tag = @current_organization.tags.find(params[:id])
         @songs = @tag.song_tags.includes(:song)
+        session[:last_visited_show_page] = request.original_url
     end
 
     def new

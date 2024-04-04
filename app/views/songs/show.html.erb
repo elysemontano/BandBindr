@@ -1,4 +1,4 @@
-<div class="not-prose mx-10 mt-10 relative overflow-x-auto shadow-lg sm:rounded-lg">
+<div class="not-prose mx-10 mt-10 relative overflow-x-auto shadow-lg sm:rounded-lg mb-20">
     <div class="flex flex-column sm:flex-row flex-wrap space-y-4 sm:space-y-0 items-center justify-between">
       <div class="pl-4 flex items-center">
         <h1 class="text-[#0097B2] text-4xl font-bold mr-4">
@@ -111,7 +111,7 @@
                 <% end %>
               </td>
               <td class="py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                <%= button_to organization_song_keys_path(@current_organization, @song, key), method: :delete, data: { confirm: 'Are you sure?' } do %>
+                <%= button_to organization_song_key_path(@current_organization, @song, key), method: :delete, data: { confirm: 'Are you sure?' } do %>
                   <svg class="w-8 h-8 text-gray-500 dark:text-white border rounded-lg p-1 hover:bg-red-500 hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z"/>
                   </svg>

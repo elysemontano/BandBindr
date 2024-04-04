@@ -32,7 +32,6 @@ class KeysController < AuthorizedController
   def destroy
     @key = Key.find(params[:id])
     if @key.destroy
-      p stored_last_visited_show_page
       redirect_to stored_last_visited_show_page || root_path
     else
       flash[:alert] = 'Failed to delete key.'
