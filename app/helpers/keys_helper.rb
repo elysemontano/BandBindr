@@ -5,7 +5,7 @@ module KeysHelper
             organization_person_keys_path(current_organization, @person)
         elsif request.original_url.include?("songs")
             @song = Song.find(params[:song_id])
-            organization_songs_keys_path(current_organization, @song)
+            organization_song_keys_path(current_organization, @song)
         else
             root_path
         end
