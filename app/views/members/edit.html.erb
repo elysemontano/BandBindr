@@ -1,0 +1,38 @@
+<div class="not-prose mt-10 relative overflow-x-auto">
+    <h3 class="text-center text-[#0097B2] text-4xl font-bold mr-4 mb-10">Edit <%= @member.user.email %>'s role</h3>
+
+    <%= form_with model: [@current_organization, @member], method: :patch, url: organization_member_path(@current_organization, @member), class: "max-w-sm mx-auto" do |form| %>
+        <div class="mb-5">
+            <%= form.label :roles, class:"block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+            <%= form.select :roles, [['Admin', 'admin'], ['Editor', 'editor'], ['Viewer', 'viewer']], {}, class:"shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light", id: "roles-select" %>
+        </div>
+        <%= form.hidden_field :roles_json, id: "roles-json" %>
+
+        <div class="flex">
+        <%= form.submit "Submit", class:"py-2.5 px-5 me-2 mb-2 text-sm font-medium text-white focus:outline-none bg-gray-500 rounded-lg border border-gray-200 hover:bg-gray-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-whitedark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700" %>
+        <% end %>
+
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const rolesSelect = document.getElementById('roles-select');
+    console.log(rolesSelect)
+
+    rolesSelect.addEventListener('change', function() {
+      const selectedRole = this.value;
+      const rolesJson = {};
+
+      // Set all roles to false by default
+      rolesJson.admin = false;
+      rolesJson.editor = false;
+      rolesJson.viewer = false;
+
+      // Set the selected role to true
+      rolesJson[selectedRole] = true;
+
+      // Set the JSON object to a hidden input field
+      document.getElementById('roles-json').value = JSON.stringify(rolesJson);
+    });
+  });
+</script>

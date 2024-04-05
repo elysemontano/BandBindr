@@ -9,7 +9,9 @@ class OrganizationsController < ApplicationController
 
   # GET /organizations/1 or /organizations/1.json
   def show
-    
+    @organizations = current_user.organizations
+    @members = @organization.members
+    p @members
   end
 
   # GET /organizations/new
