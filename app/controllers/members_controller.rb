@@ -25,12 +25,12 @@ class MembersController < AuthorizedController
         return redirect_to organization_path(@current_organization), alert: 'No email provided' if email.blank?
         user = User.find_by(email: email) || User.invite!({ email: email}, current_user)
         return redirect_to organization_path(@current_organization), alert: 'Email invalid' unless user.valid?
-        user.members.find_or_create_by(organization: @current_organization, roles: {admin: false, editor: false, viewer: true})
+        user.members.find_or_create_by(organization: @current_organization, role: "viewer")
         redirect_to organization_path(@current_organization), notice: "#{email} invited"
     end
 
     private
     def member_params
-        params.require(:member).permit(:user_id, :organization_id, :roles)
+        params.require(:member).permit(:user_id, :organization_id, :role)
     end
 end

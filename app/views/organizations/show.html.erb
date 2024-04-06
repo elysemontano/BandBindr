@@ -5,7 +5,7 @@
         <% current_member = @organization.members.find_by(user_id: current_user.id) %>
   
  <!-- Edit Organization -->
-      <% if current_member.roles["admin"] == true %>
+      <% if current_member.role == "admin" %>
        <button data-popover-target="popover-animation-edit" data-popover-placement="right" type="button" class="text-white  focus:ring-4 focus:outline-none font-medium rounded-lg text-sm mx-4 text-center">
           <%= link_to(edit_organization_path(@organization), class: "m-5") do %>
             <svg class="w-8 h-8 text-gray-500 dark:text-white hover:bg-gray-200 rounded hover:border p-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
@@ -24,14 +24,14 @@
     </div>
   </div>
     <!-- Paragraph for non-admin users -->
-  <% unless current_member.roles["admin"] == true || current_member.roles["editor"] == true %>
+  <% if current_member.role == "viewer" %>
     <div class="pl-4 my-6 flex items-center">
       <p>Your access to this organization is limited. Kindly reach out to the organization administrator to adjust your access settings.</p>
     </div>
   <% end %>
 
     <!-- Sort People -->
-  <% if current_member.roles["admin"] == true || current_member.roles["editor"] == true %>
+  <% if current_member.role == "admin" || current_member.role == "editor" %>
   <div class="flex mb-2 justify-between items-center">
     <div class="flex items-center mx-4">
       <button id="dropdownRadioButton" data-dropdown-toggle="dropdownRadio" class="inline-flex items-center text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-3 py-1.5 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700" type="button">
@@ -108,14 +108,10 @@
               <%= member.user.email %>
             </td>
             <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-              <% member.roles.each do |role, value| %>
-                <% if value %>
-                  <%= role %>
-                <% end %>
-              <% end %>
+              <%= member.role %>
             </td>
             <td>
-            <% if current_member.roles["admin"] == true || current_member.roles["editor"] == true %>
+            <% if current_member.role == "admin" || current_member.role == "editor" %>
               <button data-popover-target="popover-animation-edit-role" data-popover-placement="right" type="button" class="text-white  focus:ring-4 focus:outline-none font-medium rounded-lg text-sm mx-2 text-center">
                 <%= link_to(edit_organization_member_path(@organization, member), class: "m-5") do %>
                   <svg class="w-8 h-8 text-gray-500 dark:text-white hover:bg-gray-200 rounded hover:border p-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">

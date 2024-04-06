@@ -29,7 +29,7 @@ class OrganizationsController < ApplicationController
 
     respond_to do |format|
       if @organization.save
-        @organization.members.create(user: current_user, roles: {admin: true})
+        @organization.members.create(user: current_user, roles: "admin")
         format.html { redirect_to organization_url(@organization), notice: "Organization was successfully created." }
         format.json { render :show, status: :created, location: @organization }
       else

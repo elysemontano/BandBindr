@@ -8,30 +8,30 @@ organization4 = user2.organizations.where(name: "Org 4").first_or_create
 
 member1_org1 = Member.find_by(user_id: user1.id, organization_id: organization1.id)
 if member1_org1
-  member1_org1.update(roles: { admin: true })
+  member1_org1.update(role: "admin")
 else
-  Member.create(user_id: user1.id, organization_id: organization1.id, roles: { admin: true })
+  Member.create(user_id: user1.id, organization_id: organization1.id, role: "admin")
 end
 
 member1_org2 = Member.find_by(user_id: user1.id, organization_id: organization2.id)
 if member1_org2
-  member1_org2.update(roles: { admin: true })
+  member1_org2.update(role: "admin")
 else
-  Member.create(user_id: user1.id, organization_id: organization2.id, roles: { admin: true })
+  Member.create(user_id: user1.id, organization_id: organization2.id, role: "admin")
 end
 
 member2_org3 = Member.find_by(user_id: user2.id, organization_id: organization3.id)
 if member2_org3
-  member2_org3.update(roles: { admin: true })
+  member2_org3.update(role: "admin")
 else
-  Member.create(user_id: user2.id, organization_id: organization3.id, roles: { admin: true })
+  Member.create(user_id: user2.id, organization_id: organization3.id, role: "admin")
 end
 
 member2_org4 = Member.find_by(user_id: user2.id, organization_id: organization4.id)
 if member2_org4
-  member2_org4.update(roles: { admin: true })
+  member2_org4.update(role: "admin")
 else
-  Member.create(user_id: user2.id, organization_id: organization4.id, roles: { admin: true })
+  Member.create(user_id: user2.id, organization_id: organization4.id, role: "admin")
 end
 
 people = [
