@@ -1,14 +1,56 @@
-<h1>
-    My Account:
-</h1>
-<p>Email: <%= current_user.email%></p>
-<p>Last Organization: <%= current_user.last_used_organization_id %></p>
-<p>Organizations:</p>
-<div id="organizations">
-  <% organizations.each do |organization| %>
-    <%= render organization %>
-    <p>
-      <%= link_to "Show this organization", organization %>
-    </p>
-  <% end %>
+<div class="not-prose mx-10 mt-10 relative overflow-x-auto shadow-md sm:rounded-lg mb-20">
+  <div class="ml-4 mt-4 mb-10">
+    <div class="flex flex-column sm:flex-row flex-wrap space-y-4 sm:space-y-0 items-center justify-between pb-4">
+      <h1 class="text-[#0097B2] text-4xl font-bold">My Account</h1>
+    </div>
+    <p class="mb-4"><span class="font-bold">Email:</span> <%= current_user.email%></p>
+    <div class="flex">
+      <%= link_to 'Reset Password', change_password_path, class:"py-2.5 px-5 me-2 mb-2 text-sm font-medium text-white focus:outline-none bg-gray-500 rounded-lg border border-gray-200 hover:bg-gray-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-whitedark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700" %>
+      <%= button_to "Sign out", destroy_user_session_path, method: :delete, class:"py-2.5 px-5 me-2 mb-2 text-sm font-medium text-white focus:outline-none bg-gray-500 rounded-lg border border-gray-200 hover:bg-gray-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-whitedark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700" %>
+    </div>
+  </div>
+  <div class="flex flex-column sm:flex-row flex-wrap space-y-4 sm:space-y-0 items-center pb-4">
+      <h3 class="text-[#0097B2] text-2xl font-bold ml-4">My Organizations</h3>
+      <button data-popover-target="popover-animation-add" data-popover-placement="right" type="button" class="text-white  focus:ring-4 focus:outline-none font-medium rounded-lg text-sm mx-2 text-center">
+      <%= link_to(new_organization_path(@current_organization), class: "m-5") do %>
+        <svg class="w-8 h-8 text-gray-500 dark:text-white hover:bg-gray-200 rounded hover:border p-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-7 7V5"/>
+        </svg>
+      <% end %>
+    </button>
+    <div data-popover id="popover-animation-add" role="tooltip" class="absolute invisible inline-block w-1/10 text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
+        <div class="px-3 py-2">
+            <p>Create Organization</p>
+        </div>
+        <div data-popper-arrow></div>
+    </div>
+  </div>
+  <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+    <thead class="text-xs text-gray-700 uppercase bg-gray-200 dark:bg-gray-700 dark:text-gray-400">
+        <tr>
+            <th scope="col" class="px-6 py-3">
+                User Organizations
+            </th>
+            <th scope="col" class="px-6 py-3">
+                Status
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+      <% organizations.each do |organization| %>
+        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+          <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+              <%= link_to organization.name, organization %>
+          </td>
+          <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+            <% if organization.id == current_user.last_used_organization_id %>
+              <p>Logged in<p>
+            <% else %>
+              <p>Not logged in</p>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>

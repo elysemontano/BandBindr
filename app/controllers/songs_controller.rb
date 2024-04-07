@@ -1,6 +1,6 @@
 class SongsController < AuthorizedController
     def index
-        @songs = @current_organization.songs
+        @songs = @current_organization.songs.order(:song_name)
     end
 
     def show
