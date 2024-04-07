@@ -22,7 +22,8 @@ Rails.application.routes.draw do
     end
   end
 
-  get 'static_pages/landing_page'
   get 'static_pages/account_page'
   root 'static_pages#landing_page'
+  get 'change_password', to: 'users#change_password'
+  patch 'update_password', to: 'users#update_password'
 end

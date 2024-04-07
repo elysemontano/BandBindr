@@ -1,16 +1,19 @@
-<h2>Forgot your password?</h2>
+<div class="not-prose mt-10 relative overflow-x-auto">
+  <h3 class="text-center text-[#0097B2] text-4xl font-bold mr-4 mb-10">Forgot your password?</h3>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+  <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { class: "max-w-sm mx-auto mb-10" }) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+    <div class="mb-5 field">
+      <%= f.label :email, class:"block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" %>
+    </div>
 
-  <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
-  </div>
-<% end %>
+    <div class="flex actions">
+      <%= f.submit "Send me reset password instructions", class:"py-2.5 px-5 me-2 mb-2 text-sm font-medium text-white focus:outline-none bg-gray-500 rounded-lg border border-gray-200 hover:bg-gray-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-whitedark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700" %>
+    </div>
+    <div class="flex"><%= render "devise/shared/links" %></div>
+  <% end %>
+</div>
 
-<%= render "devise/shared/links" %>
+

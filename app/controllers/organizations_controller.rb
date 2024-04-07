@@ -11,7 +11,6 @@ class OrganizationsController < ApplicationController
   def show
     @organizations = current_user.organizations
     @members = @organization.members
-    p @members
   end
 
   # GET /organizations/new
@@ -29,7 +28,7 @@ class OrganizationsController < ApplicationController
 
     respond_to do |format|
       if @organization.save
-        @organization.members.create(user: current_user, roles: "admin")
+        @organization.members.create(user: current_user, role: "admin")
         format.html { redirect_to organization_url(@organization), notice: "Organization was successfully created." }
         format.json { render :show, status: :created, location: @organization }
       else
@@ -55,6 +54,7 @@ class OrganizationsController < ApplicationController
   # DELETE /organizations/1 or /organizations/1.json
   def destroy
     @organization.destroy
+    current_user.update(last_used_organization_id: nil)
 
     respond_to do |format|
       format.html { redirect_to organizations_url, notice: "Organization was successfully destroyed." }
