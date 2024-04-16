@@ -63,3 +63,11 @@
   </body>
 </html>
 
+<script>
+    // Make sure liveSearch is defined globally (or included in this script file)
+    document.addEventListener('turbo:load', function() {
+        if (typeof liveSearch === 'function') {
+            liveSearch();
+        }
+    });
+</script>
