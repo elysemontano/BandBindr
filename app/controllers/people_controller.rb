@@ -1,6 +1,16 @@
 class PeopleController < AuthorizedController
     def index
-        @people = @current_organization.people.order(:first_name)
+        query = params[:query]
+
+        # Filter the songs based on the query if present
+        if query.present? || query == ""
+          @people = @current_organization.people.where("first_name ILIKE ? OR last_name ILIKE ?", "%#{query}%", "%#{query}%")
+          p @people
+            render partial: 'people/search_results', locals: { people: @people }
+        else
+            @people = @current_organization.people.order(:first_name)
+            render :index
+        end
       end
       
 

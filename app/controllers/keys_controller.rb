@@ -1,4 +1,6 @@
 class KeysController < AuthorizedController
+  
+
   def new
       if params[:song_id]
           @song = Song.find(params[:song_id])

@@ -12,11 +12,8 @@ class SongsController < AuthorizedController
             @songs = @current_organization.songs
             render :index
         end
-
     end
     
-      
-
     def show
         @song = @current_organization.songs.find(params[:id])
         @people = @song.keys.includes(:person)
