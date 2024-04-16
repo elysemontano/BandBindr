@@ -1,0 +1,15 @@
+<% if @songs.present? %>
+  <% @songs.each do |song| %>
+      <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600">
+      <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+          <%= link_to organization_song_path(@current_organization, song) do %>
+            <span class="block w-full h-full">
+              <%= song.song_name %>
+            </span>
+          <% end %>
+        </td>
+      </tr>
+  <% end %>
+<% else %>
+  <p>No songs found.</p>
+<% end %>

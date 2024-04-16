@@ -5,6 +5,9 @@ Rails.application.routes.draw do
       resources :keys, only: [:new, :create, :destroy]
     end
     resources :songs do 
+      collection do 
+        get 'live_search'
+      end
       resources :song_tags
       resources :keys, only: [:new, :create, :destroy]
     end

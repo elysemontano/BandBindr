@@ -6,11 +6,12 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
-
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <link rel="preload" href="<%= asset_path('application.js') %>" as="script" crossorigin="anonymous">
+    <link rel="preload" href="<%= asset_path('controllers/application.js') %>" as="script" crossorigin="anonymous">
     <%= javascript_include_tag 'rails-ujs' %>
     <%= javascript_include_tag 'application', 'data-turbo-track': 'reload' %>
     <%= javascript_importmap_tags %>
+    
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
   </head>
 
@@ -57,6 +58,7 @@
       <%= yield %>
     </div>
     <%= render partial: 'shared/footer' %>
+    <script type="module" src="/javascript/application.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.turbo.min.js"></script>
   </body>
 </html>
