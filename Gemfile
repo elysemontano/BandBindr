@@ -78,3 +78,7 @@ gem "tailwindcss-rails", "~> 2.3"
 
 
 gem "font-awesome-sass"
+
+gem 'ransack'
+
+gem 'jquery-rails'

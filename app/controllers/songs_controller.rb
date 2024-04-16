@@ -1,8 +1,19 @@
 class SongsController < AuthorizedController
-    def index
-        @songs = @current_organization.songs.order(:song_name)
-    end
 
+    def index
+        # Get the query parameter
+        query = params[:query]
+    
+        # Filter the songs based on the query if present
+        if query.present? || query == ""
+            @songs = @current_organization.songs.where("song_name ILIKE ?", "%#{query}%")
+            render partial: 'songs/search_results', locals: { songs: @songs }
+        else
+            @songs = @current_organization.songs
+            render :index
+        end
+    end
+    
     def show
         @song = @current_organization.songs.find(params[:id])
         @people = @song.keys.includes(:person)

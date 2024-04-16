@@ -7,10 +7,10 @@
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
 
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag 'rails-ujs' %>
     <%= javascript_include_tag 'application', 'data-turbo-track': 'reload' %>
     <%= javascript_importmap_tags %>
+    
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
   </head>
 
@@ -57,7 +57,16 @@
       <%= yield %>
     </div>
     <%= render partial: 'shared/footer' %>
+    <script type="module" src="/javascript/application.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.turbo.min.js"></script>
   </body>
 </html>
 
+<script>
+    // Make sure liveSearch is defined globally (or included in this script file)
+    document.addEventListener('turbo:load', function() {
+        if (typeof liveSearch === 'function') {
+            liveSearch();
+        }
+    });
+</script>

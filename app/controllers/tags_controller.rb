@@ -1,6 +1,14 @@
 class TagsController < AuthorizedController
     def index
-        @tags = @current_organization.tags
+        query = params[:query]
+
+        if query.present? || query == ""
+            @tags = @current_organization.tags.where("tag_word ILIKE ?", "%#{query}%")
+            render partial: 'tags/search_results', locals: { tags: @tags }
+        else
+            @tags = @current_organization.tags
+            render :index
+        end
     end
 
     def show
