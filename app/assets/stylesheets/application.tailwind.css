@@ -15,3 +15,19 @@ body {
 footer {
     margin-top: auto;
 }
+
+/* Custom CSS */
+select {
+    background-color: #f8f9fa;
+    color: #343a40;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    border: 1px solid #ced4da;
+    font-size: 1rem;
+}
+
+/* Styling the options */
+select option {
+    padding: 0.5rem;
+    background-color: #ffffff;
+}
