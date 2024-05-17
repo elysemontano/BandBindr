@@ -1,14 +1,15 @@
 class PeopleController < AuthorizedController
     def index
         query = params[:query]
+        sort_by = params[:sort_by] || session[:sort_by]
 
-        # Filter the songs based on the query if present
+        session[:sort_by] = sort_by if sort_by.present?
+
         if query.present? || query == ""
-          @people = @current_organization.people.where("first_name ILIKE ? OR last_name ILIKE ?", "%#{query}%", "%#{query}%")
-          p @people
+          @people = @current_organization.people.where("first_name ILIKE ? OR last_name ILIKE ?", "%#{query}%", "%#{query}%").order(sort_by)
             render partial: 'people/search_results', locals: { people: @people }
         else
-            @people = @current_organization.people.order(:first_name)
+            @people = @current_organization.people.order(sort_by)
             render :index
         end
       end

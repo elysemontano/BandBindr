@@ -21,7 +21,21 @@
         </div>
         
       <% end %>
+      <button data-popover-target="popover-animation-add" data-popover-placement="right" type="button" class="text-white  focus:ring-4 focus:outline-none font-medium rounded-lg text-sm mx-2 text-center">
+        <%= link_to(new_organization_member_path(@current_organization), class: "m-5") do %>
+          <svg class="w-8 h-8 text-gray-500 dark:text-white hover:bg-gray-200 rounded hover:border p-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-7 7V5"/>
+          </svg>
+        <% end %>
+      </button>
+      <div data-popover id="popover-animation-add" role="tooltip" class="absolute invisible inline-block w-1/10 text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
+          <div class="px-3 py-2">
+              <p>Add member to <%= @organization.name %></p>
+          </div>
+          <div data-popper-arrow></div>
+      </div>
     </div>
+
   </div>
     <!-- Paragraph for non-admin users -->
   <% if current_member.role == "viewer" %>
@@ -30,7 +44,7 @@
     </div>
   <% end %>
 
-    <!-- Sort People -->
+    <!-- Sort People 
   <% if current_member.role == "admin" || current_member.role == "editor" %>
   <div class="flex mb-2 justify-between items-center">
     <div class="flex items-center mx-4">
@@ -41,7 +55,8 @@
               <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
           </svg>
       </button>
-      <!-- Dropdown menu -->
+      -->
+      <!-- Dropdown menu 
       <div id="dropdownRadio" class="z-10 hidden w-48 bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600" data-popper-reference-hidden="" data-popper-escaped="" data-popper-placement="top" style="position: absolute; inset: auto auto 0px 0px; margin: 0px; transform: translate3d(522.5px, 3847.5px, 0px);">
           <ul class="p-3 space-y-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownRadioButton">
               <li>
@@ -58,26 +73,16 @@
               </li>
           </ul>
       </div>
+      -->
     
 
-  <%# Invite Person %>
-      <button data-popover-target="popover-animation-add" data-popover-placement="right" type="button" class="text-white  focus:ring-4 focus:outline-none font-medium rounded-lg text-sm mx-2 text-center">
-        <%= link_to(new_organization_member_path(@current_organization), class: "m-5") do %>
-          <svg class="w-8 h-8 text-gray-500 dark:text-white hover:bg-gray-200 rounded hover:border p-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-7 7V5"/>
-          </svg>
-        <% end %>
-      </button>
-      <div data-popover id="popover-animation-add" role="tooltip" class="absolute invisible inline-block w-1/10 text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
-          <div class="px-3 py-2">
-              <p>Add member to <%= @organization.name %></p>
-          </div>
-          <div data-popper-arrow></div>
-      </div>
+  <!-- Invite Person 
+
 </div>
+-->
         
 
-   <%# Search%>
+   <!-- Search 
       <label for="table-search" class="sr-only">Search</label>
       <div class="relative">
           <div class="absolute inset-y-0 left-0 rtl:inset-r-0 rtl:right-0 flex items-center ps-3 pointer-events-none">
@@ -86,6 +91,7 @@
           <input type="text" id="table-search" class="block p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search for member">
     </div>
 </div>
+-->
 
 <%# List Members %>
     <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
